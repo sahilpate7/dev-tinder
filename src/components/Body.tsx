@@ -42,7 +42,9 @@ const Body = () => {
   return (
     <div className="h-screen min-h-screen">
         <Navbar/>
-        <Outlet />
+        <div className="container mx-auto px-4">
+            <Outlet />
+        </div>
         <Footer/>
     </div>
   )

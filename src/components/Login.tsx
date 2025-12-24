@@ -24,11 +24,13 @@ const Login = () => {
 
             const data = await response.json();
 
-            dispatch(setUser(data.data))
-
             if (!response.ok) {
                 setError(data.error);
+                return;
             }
+
+            dispatch(setUser(data.data))
+
             setError('');
             navigate('/');
         } catch (error: any) {

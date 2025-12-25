@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
-import UserCard from "./userCard";
+import UserCard from "./UserCard";
 
 const EditProfile = ({ user }: { user: any }) => {
     console.log(user);
@@ -17,7 +17,8 @@ const EditProfile = ({ user }: { user: any }) => {
     const [photoUrl, setPhotoUrl] = useState(user?.photoUrl);
     const dispatch = useDispatch();
  
-    const handleSave = async () => {
+    const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setError("");
         setLoading(true);
         try {
@@ -141,7 +142,7 @@ const EditProfile = ({ user }: { user: any }) => {
                     />
                     {error && <div className="text-error mb-4 font-bold text-center">{error}</div>}
 
-                    <button className="btn btn-primary mt-3">{loading ? 'Loading...' : 'Update'}</button>
+                    <button type="submit" className="btn btn-primary mt-3">{loading ? 'Loading...' : 'Update'}</button>
                 </fieldset>
             </form>
             {user && <UserCard person={{firstName, lastName, photoUrl, about, skills, age, gender}} />}

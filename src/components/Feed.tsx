@@ -28,7 +28,10 @@ const Feed = () => {
     if(!feed.length) getFeed();
   }, []);
   
-  if(!feed.length) return null;
+  if(!feed) return null;
+
+  if(feed.length === 0) return <p>No posts found</p>;
+
   return (
     <div className="flex justify-center gap-4 pt-12">
       <UserCard person={feed[0]} />

@@ -3,10 +3,12 @@ import {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setConnections } from "../redux/connectionsSlice";
 import ConnectionCard from "./ConnectionCard";
+import { useState } from "react";
 
 const Connections = () => {
+    const [error, setError] = useState('');
     const dispatch = useDispatch();
-    const connections = useSelector((state: any) => state.connections.connections);
+    const connections = useSelector((state: any) => state.connection.connections);
     const fetchConnections = async () => {
         try {
             const response = await fetch(`${BASE_URL}/user/connections`, {
@@ -15,12 +17,14 @@ const Connections = () => {
             })
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(data.error);
+                return setError(data.error.message);
             }
             dispatch(setConnections(data.data));
 
         } catch (error) {
-            console.log(error);
+            if(error instanceof Error) {
+                setError(error.message);
+            }
         }
     }
 
@@ -38,10 +42,11 @@ const Connections = () => {
             <div className="flex justify-center gap-4">
                 <ul className="list bg-base-100 rounded-box shadow-md w-full">
                     {connections.map((connection: any) => (
-                        <ConnectionCard connection={connection} />
+                        <ConnectionCard key={connection._id} connection={connection} />
                     ))}
                 </ul>
             </div>
+            {error && <p className="text-red-500">{error}</p>}
         </div>
     )
 }

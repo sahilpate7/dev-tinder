@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import { setPosts } from "../redux/feedSlice";
-import UserCard from "./UserCard";
+import UserCard from "./userCard";
 
 const Feed = () => {
   const feed = useSelector((state: any) => state.feed.posts);
@@ -33,7 +33,7 @@ const Feed = () => {
   if(feed.length === 0) return <p>No posts found</p>;
 
   return (
-    <div className="flex justify-center gap-4 pt-12">
+    <div className="flex justify-center gap-4">
       <UserCard person={feed[0]} />
     </div>
   )

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { removeUser } from "../redux/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import { emptyPosts } from "../redux/feedSlice";
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Navbar = () => {
                 throw new Error('Logout failed');
             }
             dispatch(removeUser({}));
+            dispatch(emptyPosts());
             navigate('/login');
         } catch (error) {
             console.log(error);
@@ -25,7 +27,8 @@ const Navbar = () => {
        
     }
     return (
-        <div className="navbar bg-base-300 shadow-sm">
+        <div className=" bg-base-100 shadow-lg">
+            <div className="container px-4 navbar mx-auto">
             <div className="flex-1">
                 <Link to={'/'} className="btn btn-ghost text-xl">DevTinder</Link>
             </div>
@@ -58,6 +61,7 @@ const Navbar = () => {
             </div>
         )}
         </div>  
+        </div>
     )
 }
 

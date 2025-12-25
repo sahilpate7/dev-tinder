@@ -40,9 +40,9 @@ const Body = () => {
         if(!user) fetchUser();
     }, [])
   return (
-    <div className="h-screen min-h-screen">
+    <div className=" bg-base-100">
         <Navbar/>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 py-8 min-h-[calc(100vh-128px)]">
             <Outlet />
         </div>
         <Footer/>

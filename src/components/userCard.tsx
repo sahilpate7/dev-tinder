@@ -50,13 +50,15 @@ const UserCard = ({ person }: { person: Person }) => {
                     className="w-full h-full object-cover max-w-72"
                 />
             </figure>
-            <div className="card-body">
-                <h2 className="card-title">{firstName} {lastName}</h2>
-                <p>{about}</p>
-                {age && <p>Age: {age}</p>}
-                {gender && <p>Gender: {gender}</p>}
-                {skills && <p>Skills: {skills.join(', ')}</p>}
-                <div className="card-actions justify-center">
+            <div className="card-body p-4">
+                <h2 className="card-title text-xl">{firstName} {lastName && lastName}</h2>
+                <p>{about.slice(0, 100)}...</p>
+                <div className="flex gap-2">
+                     {gender && <p className="capitalize"><strong>Gender:</strong> {gender}</p>}
+                     {age && <p><strong>Age: </strong> {age}</p>}
+                </div>
+                {skills && <p><strong>Skills:</strong> {skills.join(', ')}</p>}
+                <div className="grid grid-cols-2 gap-3 mt-2">
                     <button className="btn btn-primary" onClick={() => handleRequest('ignored')}>Ignore</button>
                     <button className="btn btn-secondary" onClick={() => handleRequest('interested')}>Intrested</button>
                 </div>

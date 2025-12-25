@@ -52,7 +52,7 @@ const UserCard = ({ person }: { person: Person }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{firstName} {lastName}</h2>
-                <p>{about} {_id}</p>
+                <p>{about}</p>
                 {age && <p>Age: {age}</p>}
                 {gender && <p>Gender: {gender}</p>}
                 {skills && <p>Skills: {skills.join(', ')}</p>}

@@ -2,10 +2,9 @@ import { useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
-import UserCard from "./UserCard";
+import UserCard from "./userCard";
 
 const EditProfile = ({ user }: { user: any }) => {
-    console.log(user);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [firstName, setFirstName] = useState(user?.firstName)
@@ -15,6 +14,7 @@ const EditProfile = ({ user }: { user: any }) => {
     const [about, setAbout] = useState(user?.about);
     const [skills, setSkills] = useState(user?.skills);
     const [photoUrl, setPhotoUrl] = useState(user?.photoUrl);
+    const _id = user?._id;
     const dispatch = useDispatch();
  
     const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +34,6 @@ const EditProfile = ({ user }: { user: any }) => {
                     gender: gender,
                     about: about,
                     photoUrl: photoUrl,
-
                 }),
                 credentials: 'include'
             })
@@ -145,7 +144,7 @@ const EditProfile = ({ user }: { user: any }) => {
                     <button type="submit" className="btn btn-primary mt-3">{loading ? 'Loading...' : 'Update'}</button>
                 </fieldset>
             </form>
-            {user && <UserCard person={{firstName, lastName, photoUrl, about, skills, age, gender}} />}
+            {user && <UserCard person={{firstName, lastName, photoUrl, about, skills, age, gender,_id}} />}
         </div>
     )
 }

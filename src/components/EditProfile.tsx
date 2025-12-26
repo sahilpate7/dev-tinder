@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
-import UserCard from "./userCard";
+import UserCard from "./UserCard";
 
 const EditProfile = ({ user }: { user: any }) => {
     const [loading, setLoading] = useState(false);

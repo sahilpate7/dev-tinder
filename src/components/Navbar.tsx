@@ -18,7 +18,7 @@ const Navbar = () => {
             if (!response.ok) {
                 throw new Error('Logout failed');
             }
-            dispatch(removeUser({}));
+            dispatch(removeUser());
             dispatch(emptyPosts());
             navigate('/login');
         } catch (error) {
